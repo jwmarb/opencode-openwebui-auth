@@ -1,17 +1,32 @@
-import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
+import {
+    existsSync,
+    mkdirSync,
+    readFileSync,
+    renameSync,
+    writeFileSync,
+} from "node:fs";
 import { homedir } from "node:os";
+import { dirname, join } from "node:path";
 
 const AUTH_PATH = join(homedir(), ".local", "share", "opencode", "auth.json");
 
 type OpencodeAuthEntry =
     | { type: "api"; key: string }
-    | { type: "oauth"; access: string; refresh: string; expires: number; accountId?: string };
+    | {
+          type: "oauth";
+          access: string;
+          refresh: string;
+          expires: number;
+          accountId?: string;
+      };
 
 function loadAuth(): Record<string, OpencodeAuthEntry> {
     if (!existsSync(AUTH_PATH)) return {};
     try {
-        return JSON.parse(readFileSync(AUTH_PATH, "utf8")) as Record<string, OpencodeAuthEntry>;
+        return JSON.parse(readFileSync(AUTH_PATH, "utf8")) as Record<
+            string,
+            OpencodeAuthEntry
+        >;
     } catch {
         return {};
     }

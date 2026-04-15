@@ -1,6 +1,6 @@
-import { mkdirSync, appendFileSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { appendFileSync, mkdirSync } from "node:fs";
 import { homedir } from "node:os";
+import { dirname, join } from "node:path";
 
 const LOG_DIR = join(homedir(), ".config", "opencode");
 const LOG_FILE = join(LOG_DIR, "openwebui-auth.log");

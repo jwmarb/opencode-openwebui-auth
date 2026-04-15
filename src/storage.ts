@@ -1,10 +1,21 @@
-import { mkdirSync, readFileSync, writeFileSync, renameSync, existsSync } from "node:fs";
-import { dirname, join } from "node:path";
+import {
+    existsSync,
+    mkdirSync,
+    readFileSync,
+    renameSync,
+    writeFileSync,
+} from "node:fs";
 import { homedir } from "node:os";
-import type { OpenWebUIAccount, OpenWebUIStore } from "./types";
+import { dirname, join } from "node:path";
 import { log } from "./logger";
+import type { OpenWebUIAccount, OpenWebUIStore } from "./types";
 
-const STORE_PATH = join(homedir(), ".config", "opencode", "openwebui-accounts.json");
+const STORE_PATH = join(
+    homedir(),
+    ".config",
+    "opencode",
+    "openwebui-accounts.json",
+);
 
 const EMPTY: OpenWebUIStore = { version: 1, accounts: {} };
 
@@ -26,7 +37,9 @@ export class Storage {
             }
             return parsed;
         } catch (err) {
-            log(`[storage] load failed: ${err instanceof Error ? err.message : err}`);
+            log(
+                `[storage] load failed: ${err instanceof Error ? err.message : err}`,
+            );
             return { ...EMPTY, accounts: {} };
         }
     }
@@ -38,7 +51,9 @@ export class Storage {
             writeFileSync(tmp, JSON.stringify(store, null, 2), { mode: 0o600 });
             renameSync(tmp, this.path);
         } catch (err) {
-            log(`[storage] save failed: ${err instanceof Error ? err.message : err}`);
+            log(
+                `[storage] save failed: ${err instanceof Error ? err.message : err}`,
+            );
             throw err;
         }
     }
