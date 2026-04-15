@@ -3,11 +3,14 @@
     "version": "0.0.1",
     "type": "module",
     "main": "./dist/bundle.js",
+    "bin": {
+        "opencode-openwebui-auth": "./dist/cli.js"
+    },
     "description": "opencode plugin that routes chat completions through an OpenWebUI instance using a user JWT",
     "scripts": {
-        "build": "tsc --noEmit && bun build src/index.ts --outfile dist/bundle.js --target=node --format=esm",
+        "build": "tsc --noEmit && bun build src/index.ts --outfile dist/bundle.js --target=node --format=esm && bun build src/cli.ts --outfile dist/cli.js --target=node --format=esm",
         "build:typecheck": "tsc --noEmit",
-        "build:bundle": "bun build src/index.ts --outfile dist/bundle.js --target=node --format=esm",
+        "build:bundle": "bun build src/index.ts --outfile dist/bundle.js --target=node --format=esm && bun build src/cli.ts --outfile dist/cli.js --target=node --format=esm",
         "dev": "tsc --watch --noEmit",
         "lint": "biome check src/",
         "lint:fix": "biome check --write src/",

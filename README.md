@@ -31,7 +31,7 @@ knows how to talk to it (OWUI exposes an OpenAI-compatible `/api/chat/completion
       "npm": "@ai-sdk/openai-compatible",
       "name": "OpenWebUI",
       "options": {
-        "baseURL": "https://chat.ai2s.org/api"
+        "baseURL": "https://your-openwebui-instance.example.org/api"
       },
       "models": {
         "bedrock-claude-4-6-opus":       { "name": "Claude Opus 4.6" },
@@ -54,7 +54,7 @@ knows how to talk to it (OWUI exposes an OpenAI-compatible `/api/chat/completion
 ## Add the account
 
 ```bash
-bun src/cli.ts add https://chat.ai2s.org <paste-jwt-here>
+bun src/cli.ts add https://your-openwebui-instance.example.org <paste-jwt-here>
 ```
 
 Or in opencode:
